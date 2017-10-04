@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>ru.clubbreakfast.labs.lab02</OriginalElement>
+  <nodes>
+    <node x="-389.0" y="62.0">ru.clubbreakfast.labs.lab02.Task</node>
+    <node x="259.0" y="287.0">ru.clubbreakfast.labs.lab02.Position</node>
+    <node x="24.0" y="-118.0">ru.clubbreakfast.labs.lab02.Company</node>
+    <node x="-390.0" y="368.0">ru.clubbreakfast.labs.lab02.TaskStatus</node>
+    <node x="258.0" y="63.0">ru.clubbreakfast.labs.lab02.Employee</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="124.5" y="225.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
