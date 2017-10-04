@@ -1,8 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <xs:complexType name="company">
-    <xs:sequence/>
+  <xs:element name="company" type="company"/>
+
+  <xs:complexType name="employee">
+    <xs:sequence>
+      <xs:element name="employeeID" type="xs:int"/>
+      <xs:element name="employeeName" type="xs:string" minOccurs="0"/>
+      <xs:element name="enployeePosition" type="position" minOccurs="0"/>
+      <xs:element name="eMail" type="xs:string" minOccurs="0"/>
+      <xs:element name="currentTask" type="xs:int"/>
+      <xs:element name="Competed" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="completedTask" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Assigned" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="assignedTask" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
+
+  <xs:complexType name="company">
+    <xs:sequence>
+      <xs:element name="employeeIDCounter" type="xs:int"/>
+      <xs:element name="taskIDCounter" type="xs:int"/>
+      <xs:element name="workers" type="employee" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="allTask" type="task" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="task">
+    <xs:sequence>
+      <xs:element name="taskID" type="xs:int"/>
+      <xs:element name="taskName" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="taskStatus" minOccurs="0"/>
+      <xs:element name="executor" type="xs:int"/>
+      <xs:element name="author" type="xs:int"/>
+      <xs:element name="workStartDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="closingDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="deadline" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="position">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Designer"/>
+      <xs:enumeration value="Coder"/>
+      <xs:enumeration value="Director"/>
+      <xs:enumeration value="Support"/>
+      <xs:enumeration value="HR"/>
+      <xs:enumeration value="etc"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="taskStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Closed"/>
+      <xs:enumeration value="InWork"/>
+      <xs:enumeration value="Expired"/>
+      <xs:enumeration value="Paused"/>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>
 

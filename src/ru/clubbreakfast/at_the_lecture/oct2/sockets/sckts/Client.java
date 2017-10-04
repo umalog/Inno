@@ -10,35 +10,33 @@ import java.util.Scanner;
     /* Only TCP */
 
 public class Client {
-    private static boolean isStoped = false;
+    private static int serverPort = 7777;
+    private static String address = "127.0.0.1";
+    public static void main(String[] args) {
+        try {
+            Socket socket = new Socket(address, serverPort);
+            System.out.println("I am gonna interact with server");
 
-    public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("localhost", 4444);
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-             DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+            InputStream socketInputStream = socket.getInputStream();
+            OutputStream socketOutputStream = socket.getOutputStream();
 
-            new Thread(() -> {
-                while (!isStoped) {
-                    Scanner scanner = new Scanner(System.in);
-                    String message = scanner.next();
-                    if (message.equals("stop")) isStoped = true;
-                    try {
-                        out.writeUTF(message);
-                        out.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+            DataInputStream in = new DataInputStream(socketInputStream);
+            DataOutputStream out = new DataOutputStream(socketOutputStream);
 
-            while (!isStoped){
-                String txt = in.readLine();
-                if (txt.equals("stop"))isStoped=true;
-                System.out.println(txt);
+            BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+            String messageText;
+
+            while(true) {
+                messageText = keyboard.readLine();
+                System.out.println("Send to server: " + messageText);
+                out.writeUTF(messageText);
+                out.flush();
+                messageText = in.readUTF();
+                System.out.println("Answer from server: " + messageText);
             }
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        socket.close();
     }
 
 }

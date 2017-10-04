@@ -4,34 +4,54 @@ import javax.xml.bind.annotation.*;
 import java.util.List;
 
 @XmlType
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 public class Employee {
-
+    Company company;
+    @XmlElement(required = true)
     int employeeID;
+    @XmlElement(required = true)
     String employeeName;
+    @XmlElement(required = true)
     Position enployeePosition;
+    @XmlElement(required = true)
     String eMail;
 
-    @XmlElement
-    Task currentTask;
+    @XmlElement(name = "taskInWork")
+    int currentTask;
 
     @XmlElement
     @XmlElementWrapper(name = "Competed")
-    List<Task> completedTask;
+    List<Integer> completedTask;
 
     @XmlElement
     @XmlElementWrapper(name = "Assigned")
-    List<Task> assignedTask;
+    List<Integer> assignedTask;
 
 
-    public Employee(String employeeName, Position enployeePosition, String eMail) {
-        employeeID = Company.getInstance().getEmployeeIDCounter();
+    public Employee(String employeeName, Position enployeePosition, String eMail, Company company) {
+        this.company = company;
+        employeeID = company.getEmployeeIDCounter();
         this.employeeName = employeeName;
         this.enployeePosition = enployeePosition;
         this.eMail = eMail;
-        Company.getInstance().addWorkers(this);
+        company.addWorkers(this);
     }
 
     public Employee() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        return employeeID == employee.employeeID;
+    }
+
+    @Override
+    public int hashCode() {
+        return employeeID;
     }
 }

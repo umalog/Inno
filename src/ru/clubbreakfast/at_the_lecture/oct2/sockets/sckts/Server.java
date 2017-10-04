@@ -1,37 +1,37 @@
 package ru.clubbreakfast.at_the_lecture.oct2.sockets.sckts;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
 public class Server {
-    static ArrayList<Integer> users = new ArrayList<>();
+    static int port = 7777;
+    public static void main(String[] args) {
+        try {
+            ServerSocket serverSocket = new ServerSocket(port);
+            System.out.println("Waiting for a client");
+            Socket socket = serverSocket.accept();
+            System.out.println("Have a client");
 
-    public static void main(String[] args) throws IOException {
+            InputStream socketInputStream = socket.getInputStream();
+            OutputStream socketOutputStream = socket.getOutputStream();
 
-        try (ServerSocket s = new ServerSocket(8189)) {
-            while (true) {
-                Socket in = s.accept();
-                Thread th = new Thread(() -> {
-                    try (DataInputStream dis = new DataInputStream(in.getInputStream())) {
-                        while (true) {
-                            if (dis.available() > 0) {
-                                String message = dis.readUTF();
-                                System.out.println(message);
-                                //hfpjckfnm dctv!
-                            }
-                        }
-                    } catch (IOException e) { e.printStackTrace(); }
-                });
-                th.start();
+            DataInputStream in = new DataInputStream(socketInputStream);
+            DataOutputStream out = new DataOutputStream(socketOutputStream);
+
+            String messageText;
+            while(true) {
+                messageText = in.readUTF();
+                System.out.println("Got from client: " + messageText);
+                System.out.println("Send to client: " + messageText);
+                out.writeUTF(messageText);
+                out.flush();
             }
-        }
-    }
 
-    public static void addUser(Integer port) {
-        users.add((port));
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
     }
 }

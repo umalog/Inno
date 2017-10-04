@@ -29,7 +29,7 @@ public class Student implements Serializable{
   }
 
   public Student(short num, String fName, String sName,
-                 String familyName, LocalDate bdate) {
+                 String familyName, Long bdate) {
     this.num = num;
     this.firstName = fName;
     this.secondName = sName;
