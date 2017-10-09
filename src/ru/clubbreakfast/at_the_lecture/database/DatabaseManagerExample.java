@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class DatabaseManagerExample {
     public static void main(String[] args) throws ClassNotFoundException {
-        saveStudent(new Student((short) 0, "Сара", "Луиза", "Коннор", System.currentTimeMillis()));
+        saveStudent(new Student((short) 0, "Анна", "Мария", "Дарк", System.currentTimeMillis()));
         showStudents();
     }
 
@@ -41,7 +41,7 @@ public class DatabaseManagerExample {
             statement.setString(1, student.getFirstName());
             statement.setString(2, student.getSecondName());
             statement.setString(3, student.getFamilyName());
-            statement.setDate(4, new Date(student.getBdate())); //!!!!
+            statement.setDate(4, new Date(student.getBdate()));
             statement.setInt(5, 2);
 
             statement.executeUpdate();

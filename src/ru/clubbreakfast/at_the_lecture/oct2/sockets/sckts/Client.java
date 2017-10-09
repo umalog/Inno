@@ -15,7 +15,7 @@ public class Client {
     public static void main(String[] args) {
         try {
             Socket socket = new Socket(address, serverPort);
-            System.out.println("I am gonna interact with server");
+            System.out.println("I am gonna interact with Server");
 
             InputStream socketInputStream = socket.getInputStream();
             OutputStream socketOutputStream = socket.getOutputStream();
@@ -28,11 +28,11 @@ public class Client {
 
             while(true) {
                 messageText = keyboard.readLine();
-                System.out.println("Send to server: " + messageText);
+                System.out.println("Send to Server: " + messageText);
                 out.writeUTF(messageText);
                 out.flush();
                 messageText = in.readUTF();
-                System.out.println("Answer from server: " + messageText);
+                System.out.println("Answer from Server: " + messageText);
             }
         } catch (IOException e) {
             e.printStackTrace();

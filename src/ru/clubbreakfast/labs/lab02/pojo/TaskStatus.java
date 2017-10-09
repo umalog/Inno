@@ -1,4 +1,4 @@
-package ru.clubbreakfast.labs.lab02;
+package ru.clubbreakfast.labs.lab02.pojo;
 
 
 public enum TaskStatus {

@@ -1,5 +1,9 @@
-package ru.clubbreakfast.labs.lab02;
+package ru.clubbreakfast.labs.lab02.pojo;
 
+
+import ru.clubbreakfast.labs.lab02.dao.CompanyDAO;
+import ru.clubbreakfast.labs.lab02.dao.EmployeeDAO;
+import ru.clubbreakfast.labs.lab02.dao.TaskDAO;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -8,17 +12,35 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.Date;
 
-public class ObjectFactory {
+public class XMLFactory {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EmployeeDAO.EmployeeDAOException, TaskDAO.TaskDAOException, CompanyDAO.CompanyDAOException {
 
-//        Company xmlCorp = new Company();
-//        Employee director = new Employee("Ivan Ivanovich", Position.Director, "test@inno.ru", xmlCorp);
-//        Task bag = new Task("мыть окна", "все окна", director, director, new Date(), xmlCorp);
-//        //bag.closeTask();
+        /* очистка SQL */
+//        CompanyDAO.deleteAll();
+
+        /* создание обьектов, сохранение в XML */
+//        Company xmlCorp = new Company("xmlCorp");
+//        Employee director = new Employee("Ivan Ivanovich", "Director", "test@inno.ru", xmlCorp);
+//        Employee windowCleaner = new Employee("Vasya", "Window Cleaner", "work@inno.ru", xmlCorp);
+//        Task bag = new Task("мыть окна", "все окна", windowCleaner, director, new Date(), xmlCorp);
+//        Task alert = new Task("Бу!","I need help!",windowCleaner, new Date(),xmlCorp);
 //        saveCompany(xmlCorp);
 
-        loadCompany();
+        /* из XML в SQL */
+//        Company xmlCorp = loadCompany();
+//        CompanyDAO.insertCompany(xmlCorp);
+
+        /* из SQL в XML */
+//        Company cmp = CompanyDAO.getByName("xmlCorp");
+//        if (cmp != null) saveCompany(cmp);
+
+        /* чтение из XML */
+//        Company myCompany = loadCompany();
+
+
+
+
     }
 
 

@@ -10,9 +10,8 @@ public class Server {
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(port);
-            System.out.println("Waiting for a client");
             Socket socket = serverSocket.accept();
-            System.out.println("Have a client");
+
 
             InputStream socketInputStream = socket.getInputStream();
             OutputStream socketOutputStream = socket.getOutputStream();
@@ -23,8 +22,6 @@ public class Server {
             String messageText;
             while(true) {
                 messageText = in.readUTF();
-                System.out.println("Got from client: " + messageText);
-                System.out.println("Send to client: " + messageText);
                 out.writeUTF(messageText);
                 out.flush();
             }

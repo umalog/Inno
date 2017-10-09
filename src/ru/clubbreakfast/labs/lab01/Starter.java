@@ -39,7 +39,11 @@ public class Starter {
             threads.executor.awaitTermination(2, TimeUnit.SECONDS);
             System.out.println("\nИтоговый отчет");
             Result.printResult();
+            Thread.sleep(10000);
+            //утилизация памяти -> единичное событие - 4.13мб
+            //утилизачия  CPU -> пики каждую секунду по 20% и программа тут не при чем!
         }
+
     }
 
     /**
