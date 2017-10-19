@@ -15,7 +15,7 @@ public class Proxies {
                 // Все инт-сы в массиве инт-сов должны быть прогружены тем же класслоадером
 
         proxyObject.download("ya.ru");
-        System.out.println(proxyObject.getFileContent("google.com",100));
+        System.out.println(proxyObject.getFileContent("google.java8",100));
 
 
     }

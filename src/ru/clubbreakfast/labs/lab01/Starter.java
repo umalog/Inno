@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +22,7 @@ public class Starter {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+Date time = new Date();
             List<File> checkedFiles = getFiles(args);
             ThreadHerd threads = new ThreadHerd(checkedFiles);
 
@@ -36,10 +37,12 @@ public class Starter {
                 }
             }
             threads.executor.shutdown();
-            threads.executor.awaitTermination(2, TimeUnit.SECONDS);
+            threads.executor.awaitTermination(1, TimeUnit.SECONDS);
             System.out.println("\nИтоговый отчет");
             Result.printResult();
-            Thread.sleep(10000);
+            System.out.println((new Date().getTime())-time.getTime());
+//            Thread.sleep(10000);
+
             //утилизация памяти -> единичное событие - 4.13мб
             //утилизачия  CPU -> пики каждую секунду по 20% и программа тут не при чем!
         }

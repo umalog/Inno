@@ -10,7 +10,7 @@ public class DaemonTest {
             // handle here exception
         }
 
-        System.out.println("Main Thread ending") ;
+        System.out.println("lambda Thread ending") ;
     }
 
 }

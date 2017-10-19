@@ -24,8 +24,7 @@ class ThreadHerd {
 
 
     ThreadHerd(List<File> files) {
-        this.executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(files.size());
-
+        this.executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(files.size());//Runtime.getRuntime().availableProcessors()
         /* it was possible to cycle, but I tried parallelStream)*/
         files.parallelStream().forEach(file -> {
             Future<?> fut = executor.submit(() -> {
